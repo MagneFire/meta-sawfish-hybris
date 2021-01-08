@@ -1,0 +1,26 @@
+From 4484af7cfdc9b8c743e3d3f82120404bc770fe46 Mon Sep 17 00:00:00 2001
+From: MagneFire <IDaNLContact@gmail.com>
+Date: Wed, 6 Jan 2021 23:46:20 +0100
+Subject: [PATCH 1/2] Revert "fixup! proc: make oom adjustment files user
+ read-only"
+
+This reverts commit deb1413f9e1373230a223a2daa93d2bb6f8193dd.
+---
+ fs/proc/base.c | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/fs/proc/base.c b/fs/proc/base.c
+index 901b1e26acd..e4b4e8f4aaf 100644
+--- a/fs/proc/base.c
++++ b/fs/proc/base.c
+@@ -2818,6 +2818,7 @@ static const struct pid_entry tgid_base_stuff[] = {
+ 	ONE("cgroup",  S_IRUGO, proc_cgroup_show),
+ #endif
+ 	ONE("oom_score",  S_IRUGO, proc_oom_score),
++	INF("oom_score",  S_IRUGO, proc_oom_score),
+ 	REG("oom_adj",    S_IRUSR, proc_oom_adj_operations),
+ 	REG("oom_score_adj", S_IRUSR, proc_oom_score_adj_operations),
+ #ifdef CONFIG_AUDITSYSCALL
+-- 
+2.30.0
+

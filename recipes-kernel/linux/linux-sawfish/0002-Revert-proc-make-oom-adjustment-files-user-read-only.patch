@@ -1,0 +1,40 @@
+From 4e0111c95c47b80e6802f3ccad0fef8336bd37c2 Mon Sep 17 00:00:00 2001
+From: MagneFire <IDaNLContact@gmail.com>
+Date: Wed, 6 Jan 2021 23:46:30 +0100
+Subject: [PATCH 2/2] Revert "proc: make oom adjustment files user read-only"
+
+This reverts commit 1ba6b2f465b0bd71d0c67bf7b0b0a7e7f5989b98.
+---
+ fs/proc/base.c | 9 ++++-----
+ 1 file changed, 4 insertions(+), 5 deletions(-)
+
+diff --git a/fs/proc/base.c b/fs/proc/base.c
+index e4b4e8f4aaf..a180c4bf3d1 100644
+--- a/fs/proc/base.c
++++ b/fs/proc/base.c
+@@ -2818,9 +2818,8 @@ static const struct pid_entry tgid_base_stuff[] = {
+ 	ONE("cgroup",  S_IRUGO, proc_cgroup_show),
+ #endif
+ 	ONE("oom_score",  S_IRUGO, proc_oom_score),
+-	INF("oom_score",  S_IRUGO, proc_oom_score),
+-	REG("oom_adj",    S_IRUSR, proc_oom_adj_operations),
+-	REG("oom_score_adj", S_IRUSR, proc_oom_score_adj_operations),
++	REG("oom_adj",    S_IRUGO|S_IWUSR, proc_oom_adj_operations),
++	REG("oom_score_adj", S_IRUGO|S_IWUSR, proc_oom_score_adj_operations),
+ #ifdef CONFIG_AUDITSYSCALL
+ 	REG("loginuid",   S_IWUSR|S_IRUGO, proc_loginuid_operations),
+ 	REG("sessionid",  S_IRUGO, proc_sessionid_operations),
+@@ -3204,8 +3203,8 @@ static const struct pid_entry tid_base_stuff[] = {
+ 	ONE("cgroup",  S_IRUGO, proc_cgroup_show),
+ #endif
+ 	ONE("oom_score", S_IRUGO, proc_oom_score),
+-	REG("oom_adj",   S_IRUSR, proc_oom_adj_operations),
+-	REG("oom_score_adj", S_IRUSR, proc_oom_score_adj_operations),
++	REG("oom_adj",   S_IRUGO|S_IWUSR, proc_oom_adj_operations),
++	REG("oom_score_adj", S_IRUGO|S_IWUSR, proc_oom_score_adj_operations),
+ #ifdef CONFIG_AUDITSYSCALL
+ 	REG("loginuid",  S_IWUSR|S_IRUGO, proc_loginuid_operations),
+ 	REG("sessionid",  S_IRUGO, proc_sessionid_operations),
+-- 
+2.30.0
+
