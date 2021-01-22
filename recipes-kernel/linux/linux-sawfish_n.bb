@@ -12,7 +12,6 @@ SRC_URI = " git://android.googlesource.com/kernel/msm;branch=android-msm-sawshar
     file://defconfig \
     file://img_info \
     file://0001-scripts-dtc-Remove-redundant-YYLOC-global-declaratio.patch \
-    file://0001-gadget-u_ether-Fix-missing-include.patch \
     file://0006-ARM-uaccess-remove-put_user-code-duplication.patch \
     file://0001-Revert-fixup-proc-make-oom-adjustment-files-user-rea.patch \
     file://0002-Revert-proc-make-oom-adjustment-files-user-read-only.patch \
