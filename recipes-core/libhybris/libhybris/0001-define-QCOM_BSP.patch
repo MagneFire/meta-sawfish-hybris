@@ -1,0 +1,13 @@
+diff --git a/hybris/configure.ac b/hybris/configure.ac
+index ed4dc9b..68552d8 100644
+--- a/hybris/configure.ac
++++ b/hybris/configure.ac
+@@ -166,7 +166,7 @@ AC_ARG_WITH(android-headers,
+     AM_CONDITIONAL([HAS_HWCOMPOSER2_HEADERS], [test -f $withval/hardware/hwcomposer2.h])
+     AM_CONDITIONAL([HAS_GRALLOC1_HEADER], [test -f $withval/hardware/gralloc1.h])
+     AM_CONDITIONAL([HAS_VIBRATOR_HEADER], [test -f $withval/hardware_legacy/vibrator.h])
+-    AS_IF([test -f $withval/libnfc-nxp/phLibNfc.h], [ANDROID_HEADERS_CFLAGS="-I$withval -I$withval/libnfc-nxp"],[ANDROID_HEADERS_CFLAGS="-I$withval"])
++    AS_IF([test -f $withval/libnfc-nxp/phLibNfc.h], [ANDROID_HEADERS_CFLAGS="-I$withval -I$withval/libnfc-nxp -DQCOM_BSP=1 -DQTI_BSP=1"],[ANDROID_HEADERS_CFLAGS="-I$withval -DQCOM_BSP=1 -DQTI_BSP=1"])
+     AC_SUBST([ANDROID_HEADERS_CFLAGS])
+   ],
+   [
